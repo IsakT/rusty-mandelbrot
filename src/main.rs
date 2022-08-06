@@ -151,11 +151,21 @@ fn num_of_mandelbrot_iters_before_escape(
     max_iterations
 }
 
-fn render_mandelbrot(escape_vals: Vec<Vec<usize>>) {
-    for row in escape_vals {
+/*
+Replaces each numeric mandelbrot-value in the grid with a char or whitespace.
+Then prints each line to the display, row by row.
+*/
+fn render_mandelbrot(mandelbrot_points: Vec<Vec<usize>>) {
+    for row in mandelbrot_points {
         let mut line = String::with_capacity(row.len());
-        for column in row {
-            let val = match column {
+        //                     ^^^^^^^^^^^^^
+        // Since we know what length the final line-string will have, we can init the String with the with_capacity method.
+        // This does not limit or restrain the String in any way,
+        // it just optimizes the String to not reallocate each time something is appended to the String.
+        // However, a new reallocation would take place if we would add more data beyond its initial buffer length.
+
+        for pixel in row {
+            let val = match pixel {
                 // if max_iterations=1000 and num of escapes = 1000 (which means never escaped),
                 // then the pixel was part of the Mandelbrot set.
                 // Every other number of iterations are for displaying the "aura" surrounding the fractals.
@@ -192,7 +202,7 @@ fn main() {
     let real_max = 1.0;
     let imaginary_min = -1.0;
     let imaginary_max = 1.0;
-    let mandelbrot = calculate_mandelbrot(
+    let mandelbrot_points = calculate_mandelbrot(
         max_iterations,
         real_min,
         real_max,
@@ -202,5 +212,5 @@ fn main() {
         screen_height,
     );
 
-    render_mandelbrot(mandelbrot);
+    render_mandelbrot(mandelbrot_points);
 }
