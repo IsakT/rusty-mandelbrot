@@ -6,6 +6,12 @@ The bugs in its implementation have been fixed, code refactored and reworked fro
 To render locally in your terminal, simply pull this repo, and then run:
 
 ```
+# navigate to project
+cd rusty_mandelbrot
+
+# install cargo and rust compiler
 curl https://sh.rustup.rs -sSf | sh
+
+# run program
 cargo run
 ```
