@@ -5,4 +5,7 @@ The bugs in its implementation have been fixed, code refactored and reworked fro
 
 To render locally in your terminal, simply pull this repo, and then run:
 
-`$ cargo run`
+```
+curl https://sh.rustup.rs -sSf | sh
+cargo run
+```
